@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="./homework.css">
+    <title>Drawing Line and Circle</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="500" height="500"></canvas>
+
+    <div class="line">
+        <h3>Введіть координати для відрізка</h3>
+        <p>Координати першої точки (x1, y1): 
+            <input type="number" id="x1"> 
+            <input type="number" id="y1"> </p>
+        <p>Координати другої точки (x2, y2): 
+            <input type="number" id="x2"> 
+            <input type="number" id="y2"> </p>
+        <button type="button" class="btn btn-outline-dark" onclick="drawUserLine()">Побудувати відрізок</button>
+    </div>
+
+    <div class="circle">
+        <h3>Введіть параметри для окружності</h3>
+        <p>Центр (x, y): 
+            <input type="number" id="centerX"> 
+            <input type="number" id="centerY"></p>
+        <p>Радіус: <input type="number" id="radius"></p>
+        <button type="button" class="btn btn-outline-dark" onclick="drawUserCircle()">Побудувати окружність</button>
+    </div>
+
+
+
+    <script>
+        // Отримання контексту 2D для малювання на canvas
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function drawHorizontalRuler(ctx, step, length) {
+            ctx.beginPath();
+            for (let x = 0; x <= canvas.width; x += step) {
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, length);
+                ctx.stroke();
+            }
+        }
+
+        function drawVerticalRuler(ctx, step, length) {
+            ctx.beginPath();
+            for (let y = 0; y <= canvas.height; y += step) {
+                ctx.moveTo(0, y);
+                ctx.lineTo(length, y);
+                ctx.stroke();
+            }
+        }
+
+        function drawRulerLabels(ctx, step) {
+            ctx.font = "10px Arial";
+            ctx.fillStyle = "black";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "top";
+
+            for (let x = step; x <= canvas.width; x += step) {
+                ctx.fillText(x, x, 5);
+            }
+
+            ctx.textAlign = "right";
+            for (let y = step; y <= canvas.height; y += step) {
+                ctx.fillText(y, 15, y);
+            }
+        }
+
+        function drawRulers() {
+            drawHorizontalRuler(ctx, 50, 10);
+            drawVerticalRuler(ctx, 50, 10);
+            drawRulerLabels(ctx, 50);
+        }
+
+        // Очищення перед малюванням і відновлення лінійок
+        function clearCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            drawRulers();
+        }
+
+        function drawLine(ctx, x1, y1, x2, y2) {
+            ctx.beginPath();
+            ctx.moveTo(x1, y1);
+            ctx.lineTo(x2, y2);
+            ctx.stroke();
+        }
+
+        function drawCircle(ctx, centerX, centerY, radius) {
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+            ctx.stroke();
+        }
+
+        function drawUserLine() {
+            const x1 = parseFloat(document.getElementById('x1').value);
+            const y1 = parseFloat(document.getElementById('y1').value);
+            const x2 = parseFloat(document.getElementById('x2').value);
+            const y2 = parseFloat(document.getElementById('y2').value);
+            
+            clearCanvas();
+            drawLine(ctx, x1, y1, x2, y2);
+        }
+
+        function drawUserCircle() {
+            const centerX = parseFloat(document.getElementById('centerX').value);
+            const centerY = parseFloat(document.getElementById('centerY').value);
+            const radius = parseFloat(document.getElementById('radius').value);
+            
+            clearCanvas();
+            drawCircle(ctx, centerX, centerY, radius);
+        }
+
+        drawRulers();
+    </script>
+</body>
+</html>

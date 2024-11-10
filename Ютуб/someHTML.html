@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="./someCSS.css">
+    <title>Document</title>
+    <style>
+        /* body{
+            background: #eee;
+            max-width: 960px;
+            margin: 20px auto;
+        }
+        p, h3, ul{
+            margin: 0;
+            padding: 0;
+        }
+        li{
+            list-style-type: none;
+            background: #fff;
+            margin: 20px auto;
+            padding: 10px 20px;
+            display: flex;
+            align-items: flex;
+            justify-content: space-between;
+        }
+        li.fav{
+            background: #ff9ad2;
+            color: white;
+        } */
+    </style>
+</head>
+<body>
+    <!-- <h1>Hello</h1>
+    <div id="app">
+
+        
+
+        <div v-if="showBooks">
+           <ul>
+            <li v-for="book in filteredBooks" :class="{fav: book.isFav}" @click="toggleFav(book)">
+                <h3>{{book.title}}</h3>
+                <p>{{book.author}}</p>
+            </li>
+           </ul>
+        </div>
+
+        <button @click="toggleShowBooks">
+            <span v-if="showBooks">Hide Books</span>
+            <span v-else>Show Books</span>
+        </button>
+
+    </div> -->
+
+   <noscript>js not working</noscript>
+  
+    <form id="form">
+        <input type="text" name="username" placeholder="Enter name"> <br>
+        <input type="email" name="email" placeholder="Enter your email"><br>
+        <input type="password" name="password" placeholder="Enter your password"><br>
+        <input type="radio" name="gender" value="male"> Male <br>
+        <input type="radio" name="gender" value="female"> Female <br>
+        <span id="error"></span>
+        <button >Send</button>
+    </form>
+
+
+    <script src="./script.js"> </script>
+</body>
+</html>
